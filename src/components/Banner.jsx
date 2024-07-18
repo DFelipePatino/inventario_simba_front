@@ -33,7 +33,7 @@ const Banner = () => {
                 {items.map((item, index) => (
                     <div key={index} className="blur-bottom" style={{ width: '100%', height: '300px' }}>
 
-                        <img src={item.image} alt="banner" style={{ width: '100%', height: '1000px' }} />
+                        <img src={item.image} alt="banner" style={{ width: '100%', height: '200vh' }} />
 
                     </div>
                 ))}

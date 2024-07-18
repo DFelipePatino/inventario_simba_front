@@ -26,6 +26,10 @@ const ProductList = () => {
     }, [dispatch]);
 
     const products = useSelector(state => state.products);
+    console.log(products, 'products');
+
+    const productsCopy = useSelector(state => state.productsCopy)
+    console.log(productsCopy, 'productsCopy');
 
     const [selectedQuantities, setSelectedQuantities] = useState({});
 
@@ -69,60 +73,124 @@ const ProductList = () => {
 
     return (
         <div>
-            <h1 style={cardStyles.title}>Productos Disponibles</h1>
+            {/* <h1 style={cardStyles.title}>Productos Disponibles</h1> */}
             <Banner />
-            <div style={cardStyles.container2}>
-                <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 4, lg: 4 }}>
-                    {products.map(product => (
-                        <Grid item xs={6} key={product.id}>
-                            <Card sx={{ maxWidth: 345 }} style={cardStyles.card}>
-                                <CardMedia
-                                    sx={{ height: 140 }}
-                                    style={cardStyles.media}
-                                    image={product.imagen}
-                                    title="product image"
-                                />
-                                <CardContent style={cardStyles.cardContent}>
-                                    <Typography gutterBottom variant="h5" component="div" style={cardStyles.cardTitle}>
-                                        {product.nombre}
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary" style={cardStyles.cardDescription}>
-                                        {product.descripcion}
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary" style={cardStyles.cardDescription}>
-                                        Stock: {product.stock === 0 ? 'Out of Stock' : product.stock}
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary" style={cardStyles.cardPrice}>
-                                        ${product.precio}
-                                    </Typography>
-                                </CardContent>
-                                <CardActions>
-                                    <Select
-                                        value={selectedQuantities[product.id] || 1}
-                                        onChange={(event) => handleQuantityChange(product.id, event)}
-                                        style={{ marginRight: '10px', height: '40px' }}
-                                    >
-                                        {[...Array(product.stock).keys()].map((num) => (
-                                            <MenuItem key={num + 1} value={num + 1}>
-                                                {num + 1}
-                                            </MenuItem>
-                                        ))}
-                                    </Select>
-                                    <Button
-                                        onClick={() => handleClick(product)}
-                                        size="small"
-                                        style={cardStyles.button}
-                                    >
-                                        Comprar
-                                    </Button>
-                                </CardActions>
-                            </Card>
-                        </Grid>
-                    ))}
-                </Grid>
-            </div>
+
+            {productsCopy && productsCopy.length > 0 ? (
+                <div style={cardStyles.container2}>
+                    <Grid
+                        style={{ paddingLeft: '0' }}
+                        container rowSpacing={2} columnSpacing={{ xs: 0, sm: 1, md: 1, lg: 1 }}>
+                        {productsCopy.map(product => (
+                            <Grid item xs={6} sm={6} md={4} lg={3} xl={2} key={product.id}>
+                                <Card sx={{ maxWidth: 345 }} style={cardStyles.card}>
+                                    <CardMedia
+                                        sx={{ height: 140 }}
+                                        style={cardStyles.media}
+                                        image={product.imagen}
+                                        title="product image"
+                                    />
+                                    <CardContent style={cardStyles.cardContent}>
+                                        <Typography gutterBottom variant="h5" component="div" style={cardStyles.cardTitle}>
+                                            {product.nombre}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary" style={cardStyles.cardDescription}>
+                                            {product.descripcion}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary" style={cardStyles.cardDescription}>
+                                            Stock: {product.stock === 0 ? 'Out of Stock' : product.stock}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary" style={cardStyles.cardPrice}>
+                                            ${product.precio}
+                                        </Typography>
+                                    </CardContent>
+                                    <CardActions>
+                                        <Select
+                                            value={selectedQuantities[product.id] || 1}
+                                            onChange={(event) => handleQuantityChange(product.id, event)}
+                                            style={{ marginRight: '10px', height: '40px' }}
+                                        >
+                                            {[...Array(product.stock).keys()].map((num) => (
+                                                <MenuItem key={num + 1} value={num + 1}>
+                                                    {num + 1}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                        {product.stock !== 0 ? (
+                                            <Button
+                                                onClick={() => handleClick(product)}
+                                                size="small"
+                                                style={cardStyles.button}
+                                            >
+                                                Comprar
+                                            </Button>
+                                        ) : (null)}
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                        ))}
+                    </Grid>
+                </div>
+            ) : (
+                <div style={cardStyles.container2}>
+                    <Grid
+                        style={{ paddingLeft: '0' }}
+                        container rowSpacing={2} columnSpacing={{ xs: 0, sm: 1, md: 1, lg: 1 }}>
+                        {products.map(product => (
+                            <Grid item xs={6} sm={6} md={4} lg={3} xl={2} key={product.id}
+                            style={{ paddingLeft: '0' }}
+                            >
+                                <Card sx={{ maxWidth: 345 }} style={cardStyles.card}>
+                                    <CardMedia
+                                        sx={{ height: 140 }}
+                                        style={cardStyles.media}
+                                        image={product.imagen}
+                                        title="product image"
+                                    />
+                                    <CardContent style={cardStyles.cardContent}>
+                                        <Typography gutterBottom variant="h5" component="div" style={cardStyles.cardTitle}>
+                                            {product.nombre}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary" style={cardStyles.cardDescription}>
+                                            {product.descripcion}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary" style={cardStyles.cardDescription}>
+                                            Stock: {product.stock === 0 ? 'Out of Stock' : product.stock}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary" style={cardStyles.cardPrice}>
+                                            ${product.precio}
+                                        </Typography>
+                                    </CardContent>
+                                    <CardActions>
+                                        <Select
+                                            value={selectedQuantities[product.id] || 1}
+                                            onChange={(event) => handleQuantityChange(product.id, event)}
+                                            style={{ marginRight: '10px', height: '40px' }}
+                                        >
+                                            {[...Array(product.stock).keys()].map((num) => (
+                                                <MenuItem key={num + 1} value={num + 1}>
+                                                    {num + 1}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                        {product.stock !== 0 ? (
+                                            <Button
+                                                onClick={() => handleClick(product)}
+                                                size="small"
+                                                style={cardStyles.button}
+                                            >
+                                                Comprar
+                                            </Button>
+                                        ) : (null)}
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                        ))}
+                    </Grid>
+                </div>
+            )}
         </div>
     );
-};
+}
 
 export default ProductList;

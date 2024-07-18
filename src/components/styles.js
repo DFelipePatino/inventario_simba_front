@@ -16,8 +16,8 @@ export const cardStyles = {
         position: 'absolute',
         top: '100px',
         zIndex: '+2',
-        justifyContent: 'center',
-        display: 'flex',
+        // justifyContent: 'center',
+        // display: 'flex',
     },
     title: {
         color: '#FFFFFF',

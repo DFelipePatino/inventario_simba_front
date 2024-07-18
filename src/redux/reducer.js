@@ -1,6 +1,7 @@
 
 const initialState = {
     products: [],
+    productsCopy: [],
     lastSale: [],
     salesLog: [],
 };
@@ -27,6 +28,22 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 salesLog: action.payload
             };
+        case 'SORT_PRICE':
+            return {
+                ...state,
+                productsCopy: action.payload,
+            };
+        case 'FILTER_STOCK':
+            return {
+                ...state,
+                productsCopy: action.payload
+            };
+        case 'FILTER_NAME':
+            return {
+                ...state,
+                productsCopy: action.payload
+            };
+
         default:
             return state;
     }
