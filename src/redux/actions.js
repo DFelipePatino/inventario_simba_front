@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8000/inventario';
-// const API_URL = 'https://inventario-simba-back.onrender.com/inventario';
+// const API_URL = 'http://localhost:8000/inventario';
+const API_URL = 'https://inventario-simba-back.onrender.com/inventario';
 
 export const getProducts = () => {
     return (dispatch) => {
