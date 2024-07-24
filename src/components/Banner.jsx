@@ -7,13 +7,13 @@ import './Banner.css';
 const Banner = () => {
     const items = [
         {
-            image: "/public/bannerInventario1.png",
+            image: "/bannerInventario1.png",
         },
         {
-            image: "/public/bannerInventario2.png",
+            image: "/bannerInventario2.png",
         },
         {
-            image: "/public/bannerInventario3.png",
+            image: "/bannerInventario3.png",
         },
     ];
 
