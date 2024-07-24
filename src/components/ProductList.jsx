@@ -160,6 +160,9 @@ const ProductList = () => {
                                         <Typography variant="body2" color="text.secondary" style={cardStyles.cardPrice}>
                                             ${product.precio}
                                         </Typography>
+                                        <Typography variant="body2" color="text.secondary" style={cardStyles.cardPrice}>
+                                       Campo adicional
+                                        </Typography>
                                     </CardContent>
                                     <CardActions>
                                         <Select
