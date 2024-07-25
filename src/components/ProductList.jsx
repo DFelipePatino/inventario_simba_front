@@ -103,6 +103,9 @@ const ProductList = () => {
                                         <Typography variant="body2" color="text.secondary" style={cardStyles.cardPrice}>
                                             ${product.precio}
                                         </Typography>
+                                        <Typography variant="body2" color="text.secondary" style={cardStyles.cardPrice}>
+                                            Link: {product.link}
+                                        </Typography>
                                     </CardContent>
                                     <CardActions>
                                         <Select
@@ -138,7 +141,7 @@ const ProductList = () => {
                         container rowSpacing={2} columnSpacing={{ xs: 0, sm: 1, md: 1, lg: 1 }}>
                         {products.map(product => (
                             <Grid item xs={6} sm={6} md={4} lg={3} xl={2} key={product.id}
-                            style={{ paddingLeft: '0' }}
+                                style={{ paddingLeft: '0' }}
                             >
                                 <Card sx={{ maxWidth: 345 }} style={cardStyles.card}>
                                     <CardMedia
@@ -161,7 +164,7 @@ const ProductList = () => {
                                             ${product.precio}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary" style={cardStyles.cardPrice}>
-                                       Campo adicional
+                                            Link: {product.link}
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
