@@ -104,7 +104,7 @@ const ProductList = () => {
                                             ${product.precio}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary" style={cardStyles.cardPrice}>
-                                            Link: {product.link}
+                                        Link: <a href={product.link}>Visit me!</a>
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
@@ -164,7 +164,7 @@ const ProductList = () => {
                                             ${product.precio}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary" style={cardStyles.cardPrice}>
-                                            Link: {product.link}
+                                            Link: <a href={product.link}>Visit me!</a>
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
