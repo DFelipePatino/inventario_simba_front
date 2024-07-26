@@ -72,7 +72,7 @@ const ProductList = () => {
                 <div style={cardStyles.container2}>
                     <Grid container rowSpacing={2} columnSpacing={{ xs: 0, sm: 1, md: 1, lg: 1 }}>
                         {productsCopy.map(product => (
-                            <Grid item xs={6} sm={6} md={4} lg={3} xl={2} key={product.id}>
+                            <Grid item sx={{paddingRight: '12px'}} xs={6} sm={6} md={4} lg={3} xl={2} key={product.id}>
                                 <Card sx={{ maxWidth: 345 }} style={cardStyles.card}>
                                     <CardMedia
                                         sx={{ height: 140 }}
@@ -128,7 +128,7 @@ const ProductList = () => {
                 <div style={cardStyles.container2}>
                     <Grid container rowSpacing={2} columnSpacing={{ xs: 0, sm: 1, md: 1, lg: 1 }}>
                         {products.map(product => (
-                            <Grid item sx={{paddingRight: '16px'}} xs={6} sm={6} md={4} lg={3} xl={2} key={product.id}>
+                            <Grid item sx={{paddingRight: '12px'}} xs={6} sm={6} md={4} lg={3} xl={2} key={product.id}>
                                 <Card sx={{ maxWidth: 345 }} style={cardStyles.card}>
                                     <CardMedia
                                         sx={{ height: 140 }}
