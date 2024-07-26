@@ -25,10 +25,12 @@ const Banner = () => {
         slidesToScroll: 1,
         autoplay: true,
         fade: true,
+        pauseOnHover: false,
+        // autoplaySpeed: 4000,
     };
 
     return (
-        <div className="slider-container">
+        // <div className="slider-container">
             <Slider {...settings}>
                 {items.map((item, index) => (
                     <div key={index} className="blur-bottom" style={{ width: '100%', height: '300px' }}>
@@ -38,7 +40,7 @@ const Banner = () => {
                     </div>
                 ))}
             </Slider>
-        </div>
+        // </div>
     );
 };
 
