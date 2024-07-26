@@ -91,7 +91,7 @@ export const sortStock = (order) => {
         let stock
 
         if (order === "A") {
-            stock = orderCopy.filter(product => product.stock > 0);
+            stock = orderCopy.filter(product => product.stock > 1);
         }
         if (order === "D") {
             stock = orderCopy.filter(product => product.stock <= 0);

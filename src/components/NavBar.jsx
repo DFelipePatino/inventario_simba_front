@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { searchByName } from '../redux/actions';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -15,6 +17,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
+import { Button, Divider } from '@mui/material';
+import { cardStyles } from './styles';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -61,6 +65,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function SearchAppBar() {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const products = useSelector((state) => state.products);
 
@@ -103,9 +108,34 @@ export default function SearchAppBar() {
             <Box sx={{ flexGrow: 1 }}>
                 <List>
                     <ListItem >
+                        <Button
+                            onClick={() => window.open("https://inventario-simba-back.onrender.com/inventario/productos/", "_blank")}
+                            size="small"
+                            style={cardStyles.enterButton}
+                        >
+                            Back Office
+                        </Button>
+                    </ListItem>
+                    <br />
+                    <Divider />
+                    <br />
+                    <ListItem >
                         <Sort
                             products={products}
                         />
+                    </ListItem>
+
+                    <br />
+                    <Divider />
+                    <br />
+                    <ListItem >
+                        <Button
+                            onClick={() => navigate("/")}
+                            size="small"
+                            style={cardStyles.enterButton}
+                        >
+                            Exit
+                        </Button>
                     </ListItem>
                 </List>
             </Box>

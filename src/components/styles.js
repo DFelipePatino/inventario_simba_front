@@ -1,6 +1,26 @@
 import zIndex from "@mui/material/styles/zIndex";
 
 export const cardStyles = {
+    landingContainer: {
+        height: '20px',
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        zIndex: '+2',
+        flexDirection: "column",
+        display: 'flex',
+    },
+    ProgressContainer: {
+        // height: '20px',
+        position: 'relative',
+        // top: '50%',
+        // left: '50%',
+        // transform: 'translate(-50%, -50%)',
+        zIndex: '+2',
+        // justifyContent: 'center',
+        // display: 'flex',
+    },
     container: {
         backgroundColor: '#FFFFFF',
         padding: '20px',
@@ -26,7 +46,7 @@ export const cardStyles = {
         zIndex: '+1'
     },
     card: {
-        maxWidth: 345,
+        minWidth: 345,
         border: '1px solid #EAEDED',
         boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
         marginLeft: '5%',
@@ -47,6 +67,13 @@ export const cardStyles = {
     cardPrice: {
         color: '#FF9900',
         fontWeight: 'bold',
+    },
+    enterButton: {
+        backgroundColor: 'rgb(25, 118, 210)',
+        color: '#FFFFFF',
+        '&:hover': {
+            backgroundColor: '#146EB4',
+        },
     },
     button: {
         backgroundColor: '#FF9900',

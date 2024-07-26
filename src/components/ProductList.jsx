@@ -19,12 +19,22 @@ const ProductList = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
+
     useEffect(() => {
         dispatch(getProducts());
+        scrollToTop();
     }, [dispatch]);
 
     const products = useSelector(state => state.products);
+    console.log(products, 'products');
     const productsCopy = useSelector(state => state.productsCopy);
+    console.log(productsCopy, 'productsCopy');
 
     const [selectedQuantities, setSelectedQuantities] = useState({});
 
@@ -40,6 +50,10 @@ const ProductList = () => {
     };
 
     const handleClick = (product) => {
+        if (product.link){
+            window.open(product.link, '_blank');
+            return;
+        }
         const selectedQuantity = selectedQuantities[product.id] || 1;
         Swal.fire({
             title: 'Estas seguro?',
@@ -93,9 +107,9 @@ const ProductList = () => {
                                         <Typography variant="body2" color="text.secondary" style={cardStyles.cardPrice}>
                                             ${product.precio}
                                         </Typography>
-                                        <Typography variant="body2" color="text.secondary" style={cardStyles.cardPrice}>
+                                        {/* <Typography variant="body2" color="text.secondary" style={cardStyles.cardPrice}>
                                             Link: <a href={product.link}>Visit me!</a>
-                                        </Typography>
+                                        </Typography> */}
                                     </CardContent>
                                     <CardActions>
                                         <Select
@@ -149,9 +163,9 @@ const ProductList = () => {
                                         <Typography variant="body2" color="text.secondary" style={cardStyles.cardPrice}>
                                             ${product.precio}
                                         </Typography>
-                                        <Typography variant="body2" color="text.secondary" style={cardStyles.cardPrice}>
+                                        {/* <Typography variant="body2" color="text.secondary" style={cardStyles.cardPrice}>
                                             Link: <a href={product.link}>Visit me!</a>
-                                        </Typography>
+                                        </Typography> */}
                                     </CardContent>
                                     <CardActions>
                                         <Select
@@ -173,7 +187,18 @@ const ProductList = () => {
                                             >
                                                 Comprar
                                             </Button>
-                                        ) : null}
+                                        ) 
+                                        : product.link ? (
+                                            <Button
+                                                onClick={() => handleClick(product)}
+                                                size="small"
+                                                style={cardStyles.button}
+                                            >
+                                                Visitar
+                                            </Button>
+                                        )
+                                        
+                                        : null}
                                     </CardActions>
                                 </Card>
                             </Grid>
