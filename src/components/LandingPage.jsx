@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getProducts, generateSale } from '../redux/actions';
+import { getProducts } from '../redux/actions';
 import { useNavigate } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
@@ -41,8 +41,8 @@ const ProductList = () => {
         };
     }, [dispatch, products.length]);
 
-    const [progress, setProgress] = React.useState(0);
-    const [buffer, setBuffer] = React.useState(10);
+    const [progress, setProgress] = useState(0);
+    const [buffer, setBuffer] = useState(10);
 
     const progressRef = React.useRef(() => { });
 
@@ -52,14 +52,13 @@ const ProductList = () => {
                 setProgress(0);
                 setBuffer(10);
             } else {
-                const diff = Math.random() * 10;
-                const diff2 = Math.random() * 10;
+                const diff = 100 / (70 * 2);  // increment to reach 100 in 70 seconds
+                const diff2 = diff;  // ensure buffer progresses at the same rate
                 setProgress(progress + diff);
                 setBuffer(progress + diff + diff2);
             }
         };
-    });
-
+    }, [progress]);
 
     const handleClick = () => {
         setUseEffectState(true);
@@ -78,50 +77,27 @@ const ProductList = () => {
                 setTimeout(() => {
                     navigate('/products');
                 }, 3000);
-
             }
-
-            // setTimeout(() => {
-            //     if (products.length > 0) {
-            //         navigate('/products');
-            //     }
-            // }, 4000);
-
-
         });
-    }
-
+    };
 
     return (
-        <div
-            style={{ overflowX: 'hidden' }}
-        >
+        <div style={{ overflowX: 'hidden' }}>
             <Banner />
-
             {isLoading ? (
-
-                // <div style={cardStyles.ProgressContainer}>
-
-                <Box
-                    sx={{ width: '100%', top: "50%", position: 'absolute', zIndex: '+2' }}
-                >
+                <Box sx={{ width: '100%', top: "50%", position: 'absolute', zIndex: '+2' }}>
                     <Typography variant="h6" style={{ textAlign: 'center', color: 'white' }}>
-                        Cargando Información...
+                        Waiting for server...
                         <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
                     </Typography>
                 </Box>
-                // </div>
-
             ) : (
-
                 <div style={cardStyles.landingContainer}>
-
                     <Typography variant="h6" style={{ textAlign: 'center', color: 'white' }}>
                         Welcome to the E-Commerce Portfolio
-
                     </Typography>
                     <Button
-                        onClick={() => handleClick()}
+                        onClick={handleClick}
                         size="small"
                         style={cardStyles.enterButton}
                     >
@@ -129,9 +105,8 @@ const ProductList = () => {
                     </Button>
                 </div>
             )}
-
         </div>
     );
-}
+};
 
 export default ProductList;
