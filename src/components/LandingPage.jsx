@@ -25,23 +25,28 @@ const ProductList = () => {
     console.log(products, 'products');
 
     const [isLoading, setIsLoading] = useState(false);
+    const [useEffectState, setUseEffectState] = useState(false);
 
     useEffect(() => {
         dispatch(getProducts());
         const timer = setInterval(() => {
             progressRef.current();
         }, 500);
+        if (useEffectState && products.length > 0) {
+            navigate('/products');
+        }
 
         return () => {
             clearInterval(timer);
         };
-    }, [dispatch]);
+    }, [dispatch, products.length]);
 
     const [progress, setProgress] = React.useState(0);
     const [buffer, setBuffer] = React.useState(10);
 
     const progressRef = React.useRef(() => { });
-    React.useEffect(() => {
+
+    useEffect(() => {
         progressRef.current = () => {
             if (progress > 100) {
                 setProgress(0);
@@ -57,6 +62,7 @@ const ProductList = () => {
 
 
     const handleClick = () => {
+        setUseEffectState(true);
         Swal.fire({
             title: 'Atención!',
             text: 'Esta página se encuentra alojada en un servidor de prueba, por lo que la carga de información podría tardar hasta 1 minuto. Gracias por su paciencia.',
@@ -65,12 +71,21 @@ const ProductList = () => {
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Entendido'
         }).then(() => {
-            setIsLoading(true);
-            setTimeout(() => {
-                if (products.length > 0) {
+            if (products.length == 0) {
+                setIsLoading(true);
+            } else {
+                setIsLoading(true);
+                setTimeout(() => {
                     navigate('/products');
-                }
-            }, 4000);
+                }, 3000);
+
+            }
+
+            // setTimeout(() => {
+            //     if (products.length > 0) {
+            //         navigate('/products');
+            //     }
+            // }, 4000);
 
 
         });
@@ -102,7 +117,7 @@ const ProductList = () => {
                 <div style={cardStyles.landingContainer}>
 
                     <Typography variant="h6" style={{ textAlign: 'center', color: 'white' }}>
-                    Welcome to the E-Commerce Portfolio
+                        Welcome to the E-Commerce Portfolio
 
                     </Typography>
                     <Button

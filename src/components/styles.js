@@ -38,6 +38,7 @@ export const cardStyles = {
         zIndex: '+2',
         // justifyContent: 'center',
         // display: 'flex',
+        width: '100%',
     },
     title: {
         color: '#FFFFFF',
@@ -46,7 +47,7 @@ export const cardStyles = {
         zIndex: '+1'
     },
     card: {
-        minWidth: 345,
+        // minWidth: 345,
         border: '1px solid #EAEDED',
         boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
         marginLeft: '5%',

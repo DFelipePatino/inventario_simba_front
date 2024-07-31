@@ -50,7 +50,7 @@ const ProductList = () => {
     };
 
     const handleClick = (product) => {
-        if (product.link){
+        if (product.link) {
             window.open(product.link, '_blank');
             return;
         }
@@ -79,14 +79,14 @@ const ProductList = () => {
 
     return (
         <div
-         style={{ overflowX: 'hidden' }}
+            style={{ overflowX: 'hidden' }}
         >
             <Banner />
             {productsCopy && productsCopy.length > 0 ? (
                 <div style={cardStyles.container2}>
                     <Grid container rowSpacing={2} columnSpacing={{ xs: 0, sm: 1, md: 1, lg: 1 }}>
                         {productsCopy.map(product => (
-                            <Grid item sx={{paddingRight: '12px'}} xs={6} sm={6} md={4} lg={3} xl={2} key={product.id}>
+                            <Grid item sx={{ paddingRight: '12px' }} xs={6} sm={6} md={4} lg={3} xl={2} key={product.id}>
                                 <Card sx={{ maxWidth: 345 }} style={cardStyles.card}>
                                     <CardMedia
                                         sx={{ height: 140 }}
@@ -142,7 +142,7 @@ const ProductList = () => {
                 <div style={cardStyles.container2}>
                     <Grid container rowSpacing={2} columnSpacing={{ xs: 0, sm: 1, md: 1, lg: 1 }}>
                         {products.map(product => (
-                            <Grid item sx={{paddingRight: '12px'}} xs={6} sm={6} md={4} lg={3} xl={2} key={product.id}>
+                            <Grid item sx={{ paddingRight: '12px' }} xs={6} sm={6} md={4} lg={3} xl={4} key={product.id}>
                                 <Card sx={{ maxWidth: 345 }} style={cardStyles.card}>
                                     <CardMedia
                                         sx={{ height: 140 }}
@@ -187,18 +187,18 @@ const ProductList = () => {
                                             >
                                                 Comprar
                                             </Button>
-                                        ) 
-                                        : product.link ? (
-                                            <Button
-                                                onClick={() => handleClick(product)}
-                                                size="small"
-                                                style={cardStyles.button}
-                                            >
-                                                Visitar
-                                            </Button>
                                         )
-                                        
-                                        : null}
+                                            : product.link ? (
+                                                <Button
+                                                    onClick={() => handleClick(product)}
+                                                    size="small"
+                                                    style={cardStyles.button}
+                                                >
+                                                    Visitar
+                                                </Button>
+                                            )
+
+                                                : null}
                                     </CardActions>
                                 </Card>
                             </Grid>

@@ -130,7 +130,10 @@ export default function SearchAppBar() {
                     <br />
                     <ListItem >
                         <Button
-                            onClick={() => navigate("/")}
+                            onClick={() => {
+                                navigate("/");
+                                console.log("click");
+                            }}
                             size="small"
                             style={cardStyles.enterButton}
                         >
