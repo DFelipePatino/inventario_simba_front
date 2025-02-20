@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import LandingPage from './components/LandingPage';
 import ProductList from './components/ProductList';
 import ComprobanteVenta from './components/ComprobanteVenta';
+import BackOfficeViews from './components/BackOfficeViews';
 import NavBar from './components/NavBar';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -13,11 +14,13 @@ const AppContent = () => {
 
   return (
     <>
-      {location.pathname === "/products" && <NavBar />}
+{(location.pathname === "/products" || location.pathname === "/backoffice") && <NavBar />}
+
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/products" element={<ProductList />} />
         <Route path="/comprobante" element={<ComprobanteVenta />} />
+        <Route path="/backoffice" element={<BackOfficeViews />} />
       </Routes>
     </>
   );

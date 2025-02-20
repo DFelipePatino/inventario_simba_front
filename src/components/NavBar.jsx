@@ -109,7 +109,7 @@ export default function SearchAppBar() {
                 <List>
                     <ListItem >
                         <Button
-                            onClick={() => window.open("https://inventario-simba-back.onrender.com/inventario/productos/", "_blank")}
+                            onClick={() => navigate("/backoffice")}
                             size="small"
                             style={cardStyles.enterButton}
                         >
@@ -165,7 +165,12 @@ export default function SearchAppBar() {
                         variant="h6"
                         noWrap
                         component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+                        sx={{
+                            flexGrow: 1,
+                            display: { xs: 'none', sm: 'block' },
+                            cursor: 'pointer'  // Makes it clear that it's clickable
+                        }}
+                        onClick={() => navigate("/products")}
                     >
                         E-Commerce Portfolio
                     </Typography>
