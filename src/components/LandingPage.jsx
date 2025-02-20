@@ -2,17 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProducts } from '../redux/actions';
 import { useNavigate } from 'react-router-dom';
-import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Swal from 'sweetalert2';
 import { cardStyles } from './styles';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
 import Banner from './Banner';
 import LinearProgress from '@mui/material/LinearProgress';
 import { Box } from '@mui/material';
@@ -52,7 +45,7 @@ const ProductList = () => {
                 setProgress(0);
                 setBuffer(10);
             } else {
-                const diff = 100 / (70 * 2);  // increment to reach 100 in 70 seconds
+                const diff = 100 / (85 * 2);  // increment to reach 100 in 85 seconds
                 const diff2 = diff;  // ensure buffer progresses at the same rate
                 setProgress(progress + diff);
                 setBuffer(progress + diff + diff2);
@@ -64,7 +57,7 @@ const ProductList = () => {
         setUseEffectState(true);
         Swal.fire({
             title: 'Atención!',
-            text: 'Esta página se encuentra alojada en un servidor de prueba, por lo que la carga de información podría tardar hasta 1 minuto. Gracias por su paciencia.',
+            text: 'This instance will spin down with inactivity, which can delay requests by 50 seconds or more. Thank you for your patience. - Esta instancia se detendrá por inactividad, lo que puede retrasar las solicitudes en 50 segundos o más. Gracias por su paciencia.',
             icon: 'warning',
             showCancelButton: false,
             confirmButtonColor: '#3085d6',
