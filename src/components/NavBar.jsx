@@ -86,7 +86,6 @@ export default function SearchAppBar() {
     const [term, setTerm] = React.useState('');
 
     const termTrim = term.trim();
-    console.log("este es el termtrim", termTrim)
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -109,7 +108,10 @@ export default function SearchAppBar() {
                 <List>
                     <ListItem >
                         <Button
-                            onClick={() => navigate("/backoffice")}
+                            onClick={() => {
+                                toggleDrawer(false)(); // ✅ Invoke the function properly
+                                setTimeout(() => navigate("/backoffice"), 300); // Optional delay to ensure state updates
+                            }}
                             size="small"
                             style={cardStyles.enterButton}
                         >
@@ -132,7 +134,6 @@ export default function SearchAppBar() {
                         <Button
                             onClick={() => {
                                 navigate("/");
-                                console.log("click");
                             }}
                             size="small"
                             style={cardStyles.enterButton}
@@ -196,13 +197,16 @@ export default function SearchAppBar() {
             <div>
                 <React.Fragment >
                     <SwipeableDrawer
-                        anchor={'left'}
+                        anchor="left"
                         open={state}
-                        onClose={toggleDrawer(false)}
-                        onOpen={toggleDrawer(true)}
+                        onClose={() => setState(false)}  // ✅ Directly updates state
+                        onOpen={() => setState(true)}
                     >
                         {list}
                     </SwipeableDrawer>
+
+
+
                 </React.Fragment>
             </div>
         </Box>
