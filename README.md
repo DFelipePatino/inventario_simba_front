@@ -4,43 +4,10 @@ Live Demo Back: https://inventario-simba-back.onrender.com/inventario/productos/
 
 BackEnd: https://github.com/DFelipePatino/inventario_simba_back.git
 
+Full-Stack CRUD Application with React, Python & PostgreSQL
 
-Prerequisites
+This project is a full-stack web application built using React for the frontend and Python for the backend, with PostgreSQL as the database. It demonstrates complete CRUD (Create, Read, Update, Delete) functionality, allowing users to manage data through an intuitive and responsive interface.
 
-Ensure that Node.js is installed on the system.
-npm or yarn: Node.js package manager.
+The backend, developed with Django (or Flask) and PostgreSQL, provides a RESTful API to handle data transactions efficiently, ensuring security and scalability. The frontend, powered by React, dynamically interacts with the API to display, modify, and delete records in real time.
 
-Clone the repository
-git clone https://github.com/DFelipePatino/inventario_simba_front.git
-
-Install dependencies
-npm install
-
-Set up environment variables
-If the project requires environment variables, create a .env file in the root of the project and add the necessary variables.
-REACT_APP_API_URL=https://api.example.com
-
-Run the project
-npm run dev
-
-
-
-Requisitos Previos
-
-Asegurarse de tener Node.js instalado en el sistema. 
-npm o yarn: Administrador de paquetes de Node.js.
-
- Clonar el repositorio
-  git clone https://github.com/DFelipePatino/inventario_simba_front.git
-
-Instalar dependencias
-npm install
-
-Configurar variables de entorno
-Si el proyecto requiere variables de entorno, crear un archivo .env en la raíz del proyecto y añadir las variables necesarias.
-REACT_APP_API_URL=https://api.ejemplo.com
-
-Ejecutar el proyecto
-npm run dev
-
-
+This project highlights best practices in full-stack development, including database management, API integration, state management in React, and responsive UI design, making it a great example of modern web application architecture.
