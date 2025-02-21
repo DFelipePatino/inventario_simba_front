@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import { searchByName } from '../redux/actions';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -19,6 +18,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import { Button, Divider } from '@mui/material';
 import { cardStyles } from './styles';
+import { useMediaQuery, useTheme } from '@mui/material';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -102,15 +102,32 @@ export default function SearchAppBar() {
         setTerm(value);
     }
 
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
     const list = (
         <>
             <Box sx={{ flexGrow: 1 }}>
                 <List>
                     <ListItem >
+                        {isMobile && (
+                            <Button
+                                onClick={() => {
+                                    toggleDrawer(false)();
+                                    setTimeout(() => navigate("/products"), 300);
+                                }}
+                                size="small"
+                                style={cardStyles.enterButton}
+                            >
+                                Home
+                            </Button>
+                        )}
+                    </ListItem>
+                    <ListItem >
                         <Button
                             onClick={() => {
-                                toggleDrawer(false)(); // ✅ Invoke the function properly
-                                setTimeout(() => navigate("/backoffice"), 300); // Optional delay to ensure state updates
+                                toggleDrawer(false)();
+                                setTimeout(() => navigate("/backoffice"), 300);
                             }}
                             size="small"
                             style={cardStyles.enterButton}
@@ -169,7 +186,7 @@ export default function SearchAppBar() {
                         sx={{
                             flexGrow: 1,
                             display: { xs: 'none', sm: 'block' },
-                            cursor: 'pointer'  // Makes it clear that it's clickable
+                            cursor: 'pointer'
                         }}
                         onClick={() => navigate("/products")}
                     >
@@ -180,8 +197,8 @@ export default function SearchAppBar() {
                             <SearchIcon />
                         </SearchIconWrapper>
                         <form onSubmit={(e) => {
-                            e.preventDefault(); // Prevent default form submission behavior
-                            onSubmit(e); // Pass the event to onSubmit
+                            e.preventDefault();
+                            onSubmit(e);
                         }}>
                             <StyledInputBase
                                 type="text"
@@ -199,7 +216,7 @@ export default function SearchAppBar() {
                     <SwipeableDrawer
                         anchor="left"
                         open={state}
-                        onClose={() => setState(false)}  // ✅ Directly updates state
+                        onClose={() => setState(false)}
                         onOpen={() => setState(true)}
                     >
                         {list}
