@@ -19,6 +19,8 @@ import ListItem from '@mui/material/ListItem';
 import { Button, Divider } from '@mui/material';
 import { cardStyles } from './styles';
 import { useMediaQuery, useTheme } from '@mui/material';
+import Badge from '@mui/material/Badge';
+import Tooltip from '@mui/material/Tooltip';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -70,6 +72,24 @@ export default function SearchAppBar() {
     const products = useSelector((state) => state.products);
 
     const [state, setState] = React.useState(false);
+    const [showMenuNotification, setShowMenuNotification] = React.useState(false);
+    const [showBackOfficeNotification, setShowBackOfficeNotification] = React.useState(false);
+    const [hasSearched, setHasSearched] = React.useState(false);
+
+    React.useEffect(() => {
+        const menuTimer = setTimeout(() => {
+            setShowMenuNotification(true);
+        }, 1500);
+
+        const backOfficeTimer = setTimeout(() => {
+            setShowBackOfficeNotification(true);
+        }, 1500);
+
+        return () => {
+            clearTimeout(menuTimer);
+            clearTimeout(backOfficeTimer);
+        };
+    }, []);
 
     const toggleDrawer = (open) => (event) => {
         if (
@@ -80,12 +100,17 @@ export default function SearchAppBar() {
             return;
         }
 
+        if (open) {
+            setShowMenuNotification(false);
+        }
         setState(open);
     };
 
     const [term, setTerm] = React.useState('');
 
+
     const termTrim = term.trim();
+
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -94,6 +119,7 @@ export default function SearchAppBar() {
         } else {
             dispatch(searchByName(termTrim));
             setTerm('');
+            setHasSearched(true);
         }
     };
 
@@ -113,27 +139,54 @@ export default function SearchAppBar() {
                         {isMobile && (
                             <Button
                                 onClick={() => {
-                                    toggleDrawer(false)();
-                                    setTimeout(() => navigate("/products"), 300);
+                                    if (hasSearched) {
+                                        window.location.reload();
+                                    } else {
+                                        toggleDrawer(false)();
+                                        setTimeout(() => navigate("/products"), 300);
+                                    }
                                 }}
                                 size="small"
                                 style={cardStyles.enterButton}
+                                fullWidth
                             >
                                 Home
                             </Button>
                         )}
                     </ListItem>
                     <ListItem >
-                        <Button
-                            onClick={() => {
-                                toggleDrawer(false)();
-                                setTimeout(() => navigate("/backoffice"), 300);
-                            }}
-                            size="small"
-                            style={cardStyles.enterButton}
-                        >
-                            Back Office
-                        </Button>
+                        <Tooltip title="Aqui puedes agregar productos!" arrow placement="right">
+                            <Badge
+                                variant="dot"
+                                color="error"
+                                invisible={!showBackOfficeNotification}
+                                sx={{
+                                    width: '100%',
+                                    '& .MuiBadge-badge': {
+                                        animation: showBackOfficeNotification ? 'pulse 1.5s infinite' : 'none',
+                                        '@keyframes pulse': {
+                                            '0%': { transform: 'scale(1)' },
+                                            '50%': { transform: 'scale(1.3)' },
+                                            '100%': { transform: 'scale(1)' },
+                                        },
+                                    },
+                                }}
+                            >
+                                <Button
+                                    onClick={() => {
+                                        setShowBackOfficeNotification(false);
+                                        toggleDrawer(false)();
+                                        setTimeout(() => navigate("/backoffice"), 300);
+                                    }}
+                                    size="small"
+                                    style={cardStyles.enterButton}
+                                    fullWidth
+
+                                >
+                                    Back Office
+                                </Button>
+                            </Badge>
+                        </Tooltip>
                     </ListItem>
                     <br />
                     <Divider />
@@ -177,7 +230,23 @@ export default function SearchAppBar() {
                         sx={{ mr: 2 }}
                         onClick={toggleDrawer(true)}
                     >
-                        <MenuIcon />
+                        <Badge
+                            variant="dot"
+                            color="error"
+                            invisible={!showMenuNotification}
+                            sx={{
+                                '& .MuiBadge-badge': {
+                                    animation: showMenuNotification ? 'pulse 1.5s infinite' : 'none',
+                                    '@keyframes pulse': {
+                                        '0%': { transform: 'scale(1)' },
+                                        '50%': { transform: 'scale(1.3)' },
+                                        '100%': { transform: 'scale(1)' },
+                                    },
+                                },
+                            }}
+                        >
+                            <MenuIcon />
+                        </Badge>
                     </IconButton>
                     <Typography
                         variant="h6"
@@ -188,7 +257,13 @@ export default function SearchAppBar() {
                             display: { xs: 'none', sm: 'block' },
                             cursor: 'pointer'
                         }}
-                        onClick={() => navigate("/products")}
+                        onClick={() => {
+                            if (hasSearched) {
+                                window.location.reload();
+                            } else {
+                                navigate("/products");
+                            }
+                        }}
                     >
                         E-Commerce Portfolio
                     </Typography>
