@@ -5,42 +5,15 @@ Live Demo Back: https://inventario-simba-back.onrender.com/inventario/productos/
 BackEnd: https://github.com/DFelipePatino/inventario_simba_back.git
 
 
-Prerequisites
 
-Ensure that Node.js is installed on the system.
-npm or yarn: Node.js package manager.
+Full-Stack CRUD Application with React, Python, PostgreSQL, Material UI & AWS RDS
 
-Clone the repository
-git clone https://github.com/DFelipePatino/inventario_simba_front.git
+This project is a full-stack web application built using React for the frontend and Python for the backend, with PostgreSQL as the database. It features full CRUD (Create, Read, Update, Delete) functionality, allowing users to seamlessly manage data through a dynamic and responsive interface.
 
-Install dependencies
-npm install
+The frontend, developed with React and Material UI, offers a modern and intuitive user experience. The backend, built with Django (or Flask) and PostgreSQL, directly interacts with the database, handling queries and transactions efficiently. The database is hosted on AWS RDS (Relational Database Service), providing scalability, automated backups, and high availability.
 
-Set up environment variables
-If the project requires environment variables, create a .env file in the root of the project and add the necessary variables.
-REACT_APP_API_URL=https://api.example.com
-
-Run the project
-npm run dev
+This project follows best practices in full-stack development, focusing on direct database interaction, state management in React, UI/UX optimization with Material UI, and cloud deployment with AWS RDS, making it a scalable and efficient solution.
 
 
-
-Requisitos Previos
-
-Asegurarse de tener Node.js instalado en el sistema. 
-npm o yarn: Administrador de paquetes de Node.js.
-
- Clonar el repositorio
-  git clone https://github.com/DFelipePatino/inventario_simba_front.git
-
-Instalar dependencias
-npm install
-
-Configurar variables de entorno
-Si el proyecto requiere variables de entorno, crear un archivo .env en la raíz del proyecto y añadir las variables necesarias.
-REACT_APP_API_URL=https://api.ejemplo.com
-
-Ejecutar el proyecto
-npm run dev
 
 
