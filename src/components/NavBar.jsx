@@ -211,8 +211,34 @@ export default function SearchAppBar() {
                             Exit
                         </Button>
                     </ListItem>
+                    <ListItem>
+                        <Typography>
+                            Some data is currently hardcoded
+                            <br /> while the backend is being updated.
+                            <br />Certain features may be limited.
+                            <br />
+                            <br />
+                            Please visit the Git Repository
+                            <br />of the app to learn more about this project.
+                        </Typography>
+
+                    </ListItem>
+                    <ListItem>
+                        <Button
+                            component="a"
+                            href="https://github.com/DFelipePatino/inventario_simba_front.git"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            size="small"
+                            style={cardStyles.enterButton}
+                        >
+                            Git Repo
+                        </Button>
+                    </ListItem>
+
                 </List>
             </Box>
+
         </>
     );
 

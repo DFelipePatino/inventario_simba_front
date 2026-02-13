@@ -2,7 +2,7 @@
 const initialState = {
     products: [
         {
-            descripcion: "Mi página personal",
+            descripcion: "My website!",
             id: 0,
             imagen: "portfolio.png",
             link: "https://danielpatinoportfolio.onrender.com/",
@@ -11,7 +11,7 @@ const initialState = {
             stock: 30,
         },
         {
-            descripcion: "Esta es una app diseñada para un gym",
+            descripcion: "This is a web app designed for a gym.",
             id: 1,
             imagen: "gymapp.png",
             link: "https://gymapp-c8w7.onrender.com/",
@@ -20,7 +20,7 @@ const initialState = {
             stock: 1
         },
         {
-            descripcion: "Este proyecto te permite explorar una API de perros llena de informacion",
+            descripcion: "This project lets you interact with a Dogs API.",
             id: 2,
             imagen: "dogs.png",
             link: "https://dogsproject-rr4u.onrender.com/",
@@ -29,7 +29,7 @@ const initialState = {
             stock: 4
         },
         {
-            descripcion: "Este proyecto te permite explorar una API de perros llena de informacion",
+            descripcion: "This is a fun E commerce project.",
             id: 2,
             imagen: "Store.png",
             link: "https://danielstore-front.onrender.com/",
@@ -38,7 +38,7 @@ const initialState = {
             stock: 14
         },
         {
-            descripcion: "Este proyecto te permite explorar una API de perros llena de informacion",
+            descripcion: "This is a notes app for phones.",
             id: 2,
             imagen: "StickyNotes.png",
             link: "https://fictional-university.onrender.com/",
